@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Send } from 'lucide-react';
 import { lookingFor, propertyTypes, locations, budgetRanges, CONTACT } from '../data/properties';
+import { useLanguage } from '../context/LanguageContext';
 
 const initialState = {
   name: '',
@@ -13,6 +14,7 @@ const initialState = {
 };
 
 export default function LeadForm() {
+  const { t } = useLanguage();
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
 
@@ -50,12 +52,12 @@ export default function LeadForm() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
           {/* Left info panel */}
           <div className="lg:col-span-2">
-            <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">Get In Touch</p>
+            <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">{t.form.label}</p>
             <h2 id="form-heading" className="section-title mb-4">
-              Send Your Property Enquiry
+              {t.form.title}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Fill in your details and Ravindra Singh will get back to you personally with suitable property options.
+              {t.form.intro}
             </p>
 
             {/* Quick contact */}
@@ -70,7 +72,7 @@ export default function LeadForm() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 font-medium">Call Directly</p>
+                  <p className="text-xs text-gray-500 font-medium">{t.form.callDirect}</p>
                   <p className="text-navy-900 font-bold text-sm">{CONTACT.phone}</p>
                 </div>
               </a>
@@ -87,8 +89,8 @@ export default function LeadForm() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 font-medium">Prefer WhatsApp?</p>
-                  <p className="text-green-700 font-bold text-sm">Chat with Ravindra Singh</p>
+                  <p className="text-xs text-gray-500 font-medium">{t.form.prefer}</p>
+                  <p className="text-green-700 font-bold text-sm">{t.form.chat}</p>
                 </div>
               </a>
             </div>
@@ -104,8 +106,8 @@ export default function LeadForm() {
                       <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="font-heading font-bold text-navy-900 text-xl mb-2">Enquiry Sent!</h3>
-                  <p className="text-gray-500 text-sm">Ravindra Singh will contact you shortly.</p>
+                  <h3 className="font-heading font-bold text-navy-900 text-xl mb-2">{t.form.sent}</h3>
+                  <p className="text-gray-500 text-sm">{t.form.sentInfo}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -228,11 +230,11 @@ export default function LeadForm() {
                     className="w-full flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold py-3.5 rounded-xl text-base transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
                   >
                     <Send size={17} />
-                    Submit Enquiry via WhatsApp
+                    {t.form.submit}
                   </button>
 
                   <p className="text-center text-xs text-gray-400">
-                    Your details will be shared directly with Ravindra Singh via WhatsApp.
+                    {t.form.shared}
                   </p>
                 </form>
               )}

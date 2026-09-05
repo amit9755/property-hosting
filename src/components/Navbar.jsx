@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { CONTACT } from '../data/properties';
-
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Properties', href: '#properties' },
-  { label: 'Services', href: '#services' },
-  { label: 'Areas', href: '#areas' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
+  const { t, language, chooseLanguage } = useLanguage();
+  const navLinks = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.properties, href: '#properties' },
+    { label: t.nav.services, href: '#services' },
+    { label: t.nav.areas, href: '#areas' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -54,6 +55,13 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-3">
+            <button
+              type="button"
+              onClick={() => chooseLanguage(language === 'en' ? 'hi' : 'en')}
+              className="rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:border-gold-400 hover:text-gold-400"
+            >
+              {language === 'en' ? 'हिन्दी' : 'English'}
+            </button>
             <a
               href={CONTACT.phoneHref}
               className="flex items-center gap-2 text-white/80 hover:text-gold-400 text-sm font-medium transition-colors"
@@ -98,6 +106,13 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex flex-col gap-2 px-4 pt-3 border-t border-white/10 mt-2">
+              <button
+                type="button"
+                onClick={() => chooseLanguage(language === 'en' ? 'hi' : 'en')}
+                className="flex items-center justify-center gap-2 rounded-lg border border-white/20 py-2.5 text-sm font-semibold text-white"
+              >
+                {language === 'en' ? 'हिन्दी में देखें' : 'View in English'}
+              </button>
               <a
                 href={CONTACT.phoneHref}
                 className="flex items-center justify-center gap-2 bg-navy-700 text-white py-2.5 rounded-lg text-sm font-semibold"

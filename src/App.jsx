@@ -11,27 +11,31 @@ import LeadForm from './components/LeadForm';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MobileContactBar from './components/MobileContactBar';
+import LanguagePrompt from './components/LanguagePrompt';
+import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <PropertySearch />
-        <Services />
-        <FeaturedProperties />
-        <WhyChooseUs />
-        <AreasWeServe />
-        <HowItWorks />
-        <About />
-        <LeadForm />
-        <Contact />
-      </main>
-      <Footer />
-      <MobileContactBar />
-      {/* Bottom padding for mobile contact bar */}
-      <div className="h-16 lg:hidden" aria-hidden="true" />
-    </>
+    <LanguageProvider>
+      <>
+        <Navbar />
+        <main>
+          <Hero />
+          <PropertySearch />
+          <Services />
+          <FeaturedProperties />
+          <WhyChooseUs />
+          <AreasWeServe />
+          <HowItWorks />
+          <About />
+          <LeadForm />
+          <Contact />
+        </main>
+        <Footer />
+        <MobileContactBar />
+        <div className="h-16 lg:hidden" aria-hidden="true" />
+        <LanguagePrompt />
+      </>
+    </LanguageProvider>
   );
 }

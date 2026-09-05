@@ -1,4 +1,5 @@
 import { ClipboardList, Search, MapPin, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const steps = [
   {
@@ -28,17 +29,21 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const { t, language } = useLanguage();
+  const stepText = language === 'hi'
+    ? [['अपनी जरूरत बताएं', 'अपनी प्रॉपर्टी की जरूरत, प्रकार, स्थान और बजट कॉल या व्हाट्सऐप पर साझा करें।'], ['मिलती-जुलती प्रॉपर्टी पाएं', 'रविंद्र सिंह वर्तमान लिस्टिंग और अपने नेटवर्क से आपके लिए सही प्रॉपर्टी चुनेंगे।'], ['विज़िट और मूल्यांकन', 'अपनी सुविधा के अनुसार साइट विज़िट तय करें और व्यक्तिगत मार्गदर्शन के साथ प्रॉपर्टी देखें।'], ['डील पूरी करें', 'दस्तावेज़, बातचीत और हैंडओवर में पूरी सहायता के साथ डील तय करें।']]
+    : steps.map(({ title, desc }) => [title, desc]);
   return (
     <section className="py-16 lg:py-24 bg-white" aria-labelledby="how-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-2">Simple Process</p>
+          <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-2">{t.sections.processLabel}</p>
           <h2 id="how-heading" className="section-title">
-            How It Works
+            {t.sections.processTitle}
           </h2>
           <p className="section-subtitle max-w-xl mx-auto">
-            A straightforward 4-step process to find and finalize your property in Jaipur.
+            {t.sections.processIntro}
           </p>
         </div>
 
@@ -60,8 +65,8 @@ export default function HowItWorks() {
                     {step.step}
                   </span>
                 </div>
-                <h3 className="font-heading font-semibold text-navy-900 text-base mb-2">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{step.desc}</p>
+                <h3 className="font-heading font-semibold text-navy-900 text-base mb-2">{stepText[idx][0]}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{stepText[idx][1]}</p>
               </div>
             );
           })}

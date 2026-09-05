@@ -1,7 +1,9 @@
 import { MapPin, Maximize2, Bed, Bath, MessageCircle } from 'lucide-react';
 import { CONTACT } from '../data/properties';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PropertyCard({ property }) {
+  const { language } = useLanguage();
   const { title, type, location, price, size, bedrooms, bathrooms, status, description, image, isDemo, features } =
     property;
 
@@ -79,7 +81,7 @@ export default function PropertyCard({ property }) {
 
         {/* Enquire Button */}
         <a
-          href={CONTACT.whatsappEnquiry(title)}
+          href={CONTACT.whatsappEnquiry(title, language)}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 rounded-lg text-sm transition-all duration-200 active:scale-95"

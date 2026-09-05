@@ -1,4 +1,5 @@
 import { Home, TrendingUp, Map, Key, Building2, MessageSquare } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const services = [
   {
@@ -46,23 +47,27 @@ const services = [
 ];
 
 export default function Services() {
+  const { t, language } = useLanguage();
+  const serviceText = language === 'hi'
+    ? [['प्रॉपर्टी खरीदें', 'अपनी जरूरत के अनुसार आवासीय और व्यावसायिक प्रॉपर्टी खोजें।'], ['प्रॉपर्टी बेचें', 'सच्चे खरीदार खोजने और लेन-देन पूरा करने में सहायता पाएं।'], ['प्लॉट और जमीन', 'जयपुर में आवासीय प्लॉट और जमीन के अवसर देखें।'], ['किराए की प्रॉपर्टी', 'किराए के लिए उपयुक्त घर, फ्लैट और व्यावसायिक जगह खोजें।'], ['व्यावसायिक प्रॉपर्टी', 'दुकान, ऑफिस और व्यावसायिक प्रॉपर्टी खरीदें, बेचें या लीज़ पर लें।'], ['प्रॉपर्टी सलाह', 'महत्वपूर्ण प्रॉपर्टी निर्णय से पहले स्थानीय मार्गदर्शन पाएं।']]
+    : services.map(({ title, desc }) => [title, desc]);
   return (
     <section id="services" className="py-16 lg:py-24 bg-gray-50" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-2">What We Offer</p>
+          <p className="text-gold-600 font-semibold text-sm uppercase tracking-widest mb-2">{t.sections.servicesLabel}</p>
           <h2 id="services-heading" className="section-title">
-            Our Property Services
+            {t.sections.servicesTitle}
           </h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            From finding your dream home to selling your property — we provide end-to-end assistance across Jaipur.
+            {t.sections.servicesIntro}
           </p>
         </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
@@ -72,8 +77,8 @@ export default function Services() {
                 <div className={`inline-flex p-3 rounded-xl ${service.color} mb-4 transition-transform group-hover:scale-110 duration-300`}>
                   <Icon size={24} />
                 </div>
-                <h3 className="text-lg font-heading font-semibold text-navy-900 mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{service.desc}</p>
+                <h3 className="text-lg font-heading font-semibold text-navy-900 mb-2">{serviceText[index][0]}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{serviceText[index][1]}</p>
               </div>
             );
           })}

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { lookingFor, propertyTypes, locations, budgetRanges, CONTACT } from '../data/properties';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PropertySearch() {
+  const { t, language } = useLanguage();
   const [form, setForm] = useState({
     lookingFor: 'Buy',
     propertyType: '',
@@ -16,7 +18,9 @@ export default function PropertySearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = `Hello Ravindra Ji, I am looking to *${form.lookingFor}* a *${form.propertyType || 'property'}* in *${form.location || 'Jaipur'}*. Budget: *${form.budget || 'Open'}*. Please guide me.`;
+    const msg = language === 'hi'
+      ? `नमस्ते रविंद्र जी, मैं *${form.lookingFor}* के लिए *${form.propertyType || 'प्रॉपर्टी'}* ${form.location || 'जयपुर'} में ढूंढ रहा/रही हूं। बजट: *${form.budget || 'खुला'}*। कृपया मार्गदर्शन करें।`
+      : `Hello Ravindra Ji, I am looking to *${form.lookingFor}* a *${form.propertyType || 'property'}* in *${form.location || 'Jaipur'}*. Budget: *${form.budget || 'Open'}*. Please guide me.`;
     window.open(`https://wa.me/919636961082?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -27,13 +31,13 @@ export default function PropertySearch() {
           {/* Header */}
           <div className="bg-navy-900 px-6 py-4 flex items-center gap-3">
             <Search size={20} className="text-gold-400" />
-            <h2 className="text-white font-semibold text-base">Find Your Perfect Property in Jaipur</h2>
+            <h2 className="text-white font-semibold text-base">{t.search.title}</h2>
           </div>
 
           <form onSubmit={handleSubmit} className="p-5 sm:p-6">
             {/* Looking For tabs */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">I am looking to</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{t.search.lookingTo}</p>
               <div className="flex gap-2">
                 {lookingFor.map((opt) => (
                   <button
@@ -56,7 +60,7 @@ export default function PropertySearch() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-                  Property Type
+                  {t.search.propertyType}
                 </label>
                 <select
                   name="propertyType"
@@ -74,7 +78,7 @@ export default function PropertySearch() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-                  Location
+                  {t.search.location}
                 </label>
                 <select
                   name="location"
@@ -92,7 +96,7 @@ export default function PropertySearch() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-                  Budget
+                  {t.search.budget}
                 </label>
                 <select
                   name="budget"
@@ -115,11 +119,11 @@ export default function PropertySearch() {
               className="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold py-3.5 rounded-xl text-base transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2"
             >
               <Search size={18} />
-              Find Property
+              {t.search.submit}
             </button>
 
             <p className="text-center text-xs text-gray-400 mt-3">
-              Your enquiry will be sent directly to Ravindra Singh via WhatsApp
+              {t.search.note}
             </p>
           </form>
         </div>

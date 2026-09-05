@@ -1,5 +1,6 @@
 import { MapPin, UserCheck, Handshake, Eye, Target, Phone } from 'lucide-react';
 import { CONTACT } from '../data/properties';
+import { useLanguage } from '../context/LanguageContext';
 
 const points = [
   {
@@ -35,6 +36,10 @@ const points = [
 ];
 
 export default function WhyChooseUs() {
+  const { t, language } = useLanguage();
+  const pointText = language === 'hi'
+    ? [['जयपुर के स्थानीय बाजार का ज्ञान', 'जयपुर के क्षेत्रों, कीमतों और आने वाले इलाकों की गहरी समझ।'], ['व्यक्तिगत प्रॉपर्टी सहायता', 'आपकी जरूरत और बजट के अनुसार व्यक्तिगत मार्गदर्शन।'], ['खरीदार और विक्रेता सहायता', 'प्रक्रिया के हर चरण में खरीदारों और विक्रेताओं के लिए समर्पित सहायता।'], ['पारदर्शी डील प्रक्रिया', 'स्पष्ट बातचीत और ईमानदार सलाह — कोई छिपा खर्च या भ्रामक दावा नहीं।'], ['बजट के अनुसार प्रॉपर्टी', 'आपकी जरूरत और आर्थिक सीमा से वास्तव में मेल खाने वाली प्रॉपर्टी।'], ['सीधी व्यक्तिगत सहायता', 'आप सीधे रविंद्र सिंह से बात करते हैं — कोई बिचौलिया और देरी नहीं।']]
+    : points.map(({ title, desc }) => [title, desc]);
   return (
     <section className="py-16 lg:py-24 bg-navy-900 relative overflow-hidden" aria-labelledby="why-heading">
       {/* Background decoration */}
@@ -47,12 +52,12 @@ export default function WhyChooseUs() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-gold-400 font-semibold text-sm uppercase tracking-widest mb-2">Why Us</p>
+          <p className="text-gold-400 font-semibold text-sm uppercase tracking-widest mb-2">{t.sections.whyLabel}</p>
           <h2 id="why-heading" className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight">
-            Why Choose Ravindra Singh?
+            {t.sections.whyTitle}
           </h2>
           <p className="text-white/60 mt-3 text-lg max-w-2xl mx-auto">
-            Committed to making your property journey smooth, transparent and stress-free.
+            {t.sections.whyIntro}
           </p>
         </div>
 
@@ -71,8 +76,8 @@ export default function WhyChooseUs() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm mb-1.5">{point.title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{point.desc}</p>
+                  <h3 className="text-white font-semibold text-sm mb-1.5">{pointText[idx][0]}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{pointText[idx][1]}</p>
                 </div>
               </div>
             );
@@ -90,13 +95,13 @@ export default function WhyChooseUs() {
               className="flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-navy-900 font-bold px-6 py-3 rounded-xl transition-all duration-200 active:scale-95"
             >
               <Phone size={17} />
-              Call Now: {CONTACT.phone}
+              {t.sections.callNow}: {CONTACT.phone}
             </a>
             <a
               href="#enquiry"
               className="flex items-center gap-2 border-2 border-white/30 hover:border-white text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 active:scale-95"
             >
-              Send Enquiry
+              {t.sections.enquiry}
             </a>
           </div>
         </div>
