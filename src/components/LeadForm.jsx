@@ -36,7 +36,7 @@ export default function LeadForm() {
       .filter(Boolean)
       .join('\n');
 
-    window.open(`https://wa.me/917014158171?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/919636961082?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

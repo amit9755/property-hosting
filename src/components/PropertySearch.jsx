@@ -17,7 +17,7 @@ export default function PropertySearch() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const msg = `Hello Ravindra Ji, I am looking to *${form.lookingFor}* a *${form.propertyType || 'property'}* in *${form.location || 'Jaipur'}*. Budget: *${form.budget || 'Open'}*. Please guide me.`;
-    window.open(`https://wa.me/917014158171?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/919636961082?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (

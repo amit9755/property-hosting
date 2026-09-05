@@ -7,11 +7,11 @@ export const CONTACT = {
   business: 'Ravindra Singh Property Consultant',
   phone: '9636961082',
   phoneHref: 'tel:9636961082',
-  whatsapp: 'https://wa.me/917014158171',
+  whatsapp: 'https://wa.me/919636961082',
   whatsappEnquiry: (propertyName) =>
-    `https://wa.me/917014158171?text=Hello%20Ramesh%20Ji%2C%20I%20am%20interested%20in%20the%20property%3A%20${encodeURIComponent(propertyName)}.%20Please%20share%20more%20details.`,
+    `https://wa.me/919636961082?text=Hello%20Ravindra%20Ji%2C%20I%20am%20interested%20in%20the%20property%3A%20${encodeURIComponent(propertyName)}.%20Please%20share%20more%20details.`,
   whatsappGeneral:
-    'https://wa.me/917014158171?text=Hello%20Ramesh%20Ji%2C%20I%20am%20looking%20for%20a%20property%20in%20Jaipur.%20Please%20help%20me.',
+    'https://wa.me/919636961082?text=Hello%20Ravindra%20Ji%2C%20I%20am%20looking%20for%20a%20property%20in%20Jaipur.%20Please%20help%20me.',
   city: 'Jaipur',
   state: 'Rajasthan',
   mapEmbedUrl:
